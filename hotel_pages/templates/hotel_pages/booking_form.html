@@ -1,0 +1,8 @@
+<h2>{% if form.instance.pk %}Редагування{% else %}Створення{% endif %} бронювання</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зберегти дані</button>
+</form>
+<br>
+<a href="{% url 'booking_list' %}">Скасувати</a>

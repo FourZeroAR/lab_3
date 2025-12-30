@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'hotel',
+    'hotel_pages',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

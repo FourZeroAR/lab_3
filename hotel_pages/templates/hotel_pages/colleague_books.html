@@ -1,0 +1,24 @@
+<h2>Книги з бібліотеки</h2>
+<a href="{% url 'booking_list' %}">⬅ До моїх бронювань</a>
+<hr>
+<table border="1">
+    <tr>
+        <th>Назва</th>
+        <th>Автор</th>
+        <th>Дія</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>
+            <form action="{% url 'colleague_delete' book.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Видалити через API</button>
+            </form>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">Дані не отримано. Перевірте, чи запущено сервер на порту 8001.</td></tr>
+    {% endfor %}
+</table>

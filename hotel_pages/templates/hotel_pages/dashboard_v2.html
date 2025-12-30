@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Analytics v2 (Bokeh)</title>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-{{ bokeh_version }}.min.js"></script>
+    {{ script|safe }}
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1d20; color: #f8f9fa; margin: 0; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #343a40; padding-bottom: 15px; }
+        .dashboard-title { margin: 0; color: #0d6efd; }
+        .stats-card { background: #2c3034; padding: 25px; border-radius: 15px; margin-bottom: 30px; border: 1px solid #3e444a; box-shadow: 0 8px 16px rgba(0,0,0,0.4); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 20px; }
+        .card { background: #2c3034; padding: 20px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; min-height: 340px; }
+        .nav-group { display: flex; gap: 15px; }
+        .nav-btn { padding: 10px 20px; background: #0d6efd; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; transition: 0.3s; }
+        .nav-btn:hover { background: #0b5ed7; }
+        .btn-perf { background: #ffc107; color: #000; }
+        .dataframe { width: 100%; border-collapse: collapse; background: #1a1d20; color: white; }
+        .dataframe th, .dataframe td { border: 1px solid #3e444a; padding: 10px; text-align: left; }
+        .dataframe th { color: #0d6efd; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="dashboard-title">Hotel Analytics v2 <small style="color: #6c757d;">(Bokeh {{ bokeh_version }})</small></h1>
+        <div class="nav-group">
+            <a href="{% url 'performance_test' %}" class="nav-btn btn-perf">⚡ Performance Test</a>
+            <a href="{% url 'dashboard_v1' %}" class="nav-btn">← Switch to Plotly</a>
+        </div>
+    </div>
+
+    <div class="stats-card">
+        <h3 style="margin-top: 0; color: #0d6efd;">Pandas Descriptive Statistics</h3>
+        <div style="overflow-x: auto;">
+            {{ pandas_stats|safe }}
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card"><div>{{ divs.p1|safe }}</div></div>
+        <div class="card"><div>{{ divs.p2|safe }}</div></div>
+        <div class="card"><div>{{ divs.p3|safe }}</div></div>
+        <div class="card"><div>{{ divs.p4|safe }}</div></div>
+        <div class="card"><div>{{ divs.p5|safe }}</div></div>
+        <div class="card"><div>{{ divs.p6|safe }}</div></div>
+    </div>
+</body>
+</html>

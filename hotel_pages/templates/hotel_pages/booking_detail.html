@@ -1,0 +1,16 @@
+<h2>Деталі бронювання #{{ booking.id }}</h2>
+<p><strong>Гість:</strong> {{ booking.guest.name }}</p>
+<p><strong>Номер кімнати:</strong> {{ booking.room.number }} ({{ booking.room.room_type }})</p>
+<p><strong>Дата заїзду:</strong> {{ booking.check_in }}</p>
+<p><strong>Ціна:</strong> ${{ booking.total }}</p>
+<p><strong>Статус:</strong> {{ booking.status }}</p>
+
+<hr>
+<a href="{% url 'booking_list' %}">⬅ Назад до списку</a> |
+<a href="{% url 'booking_edit' booking.id %}">Редагувати</a>
+
+<br><br>
+<form action="{% url 'booking_delete' booking.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Ви впевнені?')">Видалити це бронювання</button>
+</form>

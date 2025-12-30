@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Analytics v1 (Plotly Anthracite)</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #000000; color: #f8f9fa; margin: 0; padding: 30px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #2c3034; padding-bottom: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 40px; }
+        .card { background: #2c3034; border-radius: 15px; border: 1px solid #3e444a; padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: visible; }
+        .stats-card { background: #1a1d20; padding: 25px; border-radius: 15px; margin-bottom: 40px; border: 1px solid #2c3034; }
+        .nav-group { display: flex; gap: 15px; }
+        .nav-btn { padding: 12px 24px; background: #198754; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+        .nav-btn:hover { background: #157347; transform: translateY(-2px); }
+        .btn-perf { background: #ffc107; color: #000; }
+        .btn-perf:hover { background: #e0a800; color: #000; }
+        .dataframe { width: 100%; border-collapse: collapse; background: #2c3034; color: white; border-radius: 10px; overflow: hidden; }
+        .dataframe th, .dataframe td { border: 1px solid #3e444a; padding: 12px; text-align: left; }
+        .dataframe th { background: #1a1d20; color: #0dcaf0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 style="color: #0dcaf0; margin: 0;">Hotel Analytics <small style="color: #6c757d;">v1 Plotly</small></h1>
+        <div class="nav-group">
+            <a href="{% url 'performance_test' %}" class="nav-btn btn-perf">⚡ Performance Test</a>
+            <a href="{% url 'dashboard_v2' %}" class="nav-btn">Switch to Bokeh v2 →</a>
+        </div>
+    </div>
+
+    <div class="stats-card">
+        <h3 style="margin-top: 0; color: #adb5bd;">Pandas Descriptive Statistics</h3>
+        <div style="overflow-x: auto;">
+            {{ pandas_stats|safe }}
+        </div>
+    </div>
+
+    <div class="grid">
+        {% for graph in graphs %}
+            <div class="card">
+                {{ graph|safe }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

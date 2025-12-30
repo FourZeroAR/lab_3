@@ -1,0 +1,24 @@
+<h2>Список усіх бронювань</h2>
+<a href="{% url 'booking_create' %}">Створити нове бронювання</a>
+<hr>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Гість</th>
+        <th>Номер</th>
+        <th>Дії</th>
+    </tr>
+    {% for booking in bookings %}
+    <tr>
+        <td>{{ booking.id }}</td>
+        <td>{{ booking.guest.name }}</td>
+        <td>{{ booking.room.number }}</td>
+        <td>
+            <a href="{% url 'booking_detail' booking.id %}">Детальніше</a> |
+            <a href="{% url 'booking_edit' booking.id %}">Редагувати</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{% url 'colleague_books' %}">Перейти до API</a>
